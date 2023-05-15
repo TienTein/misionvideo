@@ -1,0 +1,64 @@
+.video__slider {
+    .slider {
+        height: 100%;
+        .slick-track {
+            height: 100%;
+            .slick-slide {
+                height: 100%;
+                div {
+                    height: 100%;
+                    outline: none;
+                    .slide {
+                        margin: 20px 0;
+                        padding: 0 20px;
+                        height: 100%;
+                        transition: 0.5s;
+                        cursor: pointer;
+                        img {
+                            border-radius: 5px;
+                        }
+                        p {
+                            text-transform: capitalize;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .arrow {
+        position: absolute;
+        z-index: 10;
+        width: fit-content;
+        height: 200px;
+        background-color: transparent;
+        display: flex;
+        align-items: center;
+        top: 50%;
+        bottom: 50%;
+        margin: auto 0;
+        cursor: pointer;
+        img {
+            margin: 0 5px;
+            width: 15px;
+            height: 50%;
+        }
+        &.prev-arrow {
+            left: 0;
+        }
+        &.next-arrow {
+            right: 0;
+        }
+    }
+
+    @media (max-width: 900px) {
+        .slide {
+            padding: 0 0 !important;
+            margin: 0 0 !important;
+            p {
+                padding: 0 10px 10px;
+                font-size: 14px;
+            }
+        }
+    }
+}
