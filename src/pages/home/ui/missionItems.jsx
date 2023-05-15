@@ -6,7 +6,6 @@ import { useSession } from "next-auth/react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { toast } from "react-toastify";
 import Pagination from "./pagination";
-import useMisison from "../logic/useMission";
 
 import Image from "next/image";
 
@@ -17,10 +16,6 @@ export default function MissionItems() {
   const isMatchLG = useMediaQuery(theme.breakpoints.down("lg"));
   const missions = useSelector(selectMissions);
   const { data: session } = useSession();
-  const { getMissionDatas } = useMisison();
-  useEffect(() => {
-    getMissionDatas();
-  }, []);
 
   useEffect(() => {
     if (session !== null && session !== undefined) {

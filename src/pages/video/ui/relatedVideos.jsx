@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
-import useMisison from "../../home/logic/useMission";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useMediaQuery, useTheme } from "@mui/material";
@@ -33,12 +32,7 @@ const RelatedVideos = () => {
   const theme = useTheme();
   const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
   const missions = useSelector(selectMissions);
-  const { getMissionDatas } = useMisison();
   const [slideIndex, setSlideIndex] = useState(0);
-
-  useEffect(() => {
-    getMissionDatas();
-  }, []);
 
   const newMissions = missions.data?.filter(
     (item) => item.CategoriesCampaignId === 4

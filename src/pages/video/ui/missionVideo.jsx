@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
 import { selectMissions } from "../../../redux/selector";
-import { usePathname } from "next/navigation";
-import { useRouter } from "next/navigation";
-import useMisison from "../../home/logic/useMission";
+import { usePathname, useRouter } from "next/navigation";
 import CurrentVideo from "./currentVideo";
 import ProgressMission from "./progressMission";
 
@@ -14,7 +12,6 @@ const MissionVideo = () => {
   const missions = useSelector(selectMissions);
   const router = useRouter();
   const pathname = usePathname();
-  const { getMissionDatas } = useMisison();
   const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
@@ -28,11 +25,7 @@ const MissionVideo = () => {
     }
   }, [pathname]);
 
-  useEffect(() => {
-    getMissionDatas();
-  }, []);
-
-  const id = +pathname.split("-").pop();
+  const id = +pathname?.split("-").pop();
   const [newMission, setNewMission] = useState(null);
   useEffect(() => {
     const mission = missions.data?.find((item) => item.Id === id);

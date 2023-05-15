@@ -18,9 +18,9 @@ import DrawlerHeader from "./DrawlerHeader";
 import Loading from "./loading";
 import logo from "../../public/images/logo.png";
 import authSlice from "../../src/pages/dang-nhap/logic/authSlice";
-import { selectUser, checkLoadingSelector } from "../redux/selector";
+import { selectUser } from "../redux/selector";
 
-const Header = ({ setIsLoading }) => {
+const Header = () => {
   const pathname = usePathname();
   const router = useRouter();
   const dispatch = useDispatch();
@@ -35,15 +35,6 @@ const Header = ({ setIsLoading }) => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-
-  const checkLoading = useSelector(checkLoadingSelector);
-  useEffect(() => {
-    console.log("check");
-    if (checkLoading === true) {
-      console.log("checkLoading");
-      setIsLoading(checkLoading);
-    }
-  }, [checkLoading]);
 
   useEffect(() => {
     try {
