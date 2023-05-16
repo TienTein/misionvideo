@@ -2,12 +2,13 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import authSlice from "./authSlice";
 import { toast } from "react-toastify";
-import { api_host } from "@/utils/api";
+import { getConfigUrl } from '@/utils/getConfig';
 
 const useAuth = () => {
   const dispatch = useDispatch();
 
   const signin = async ({ username, password }) => {
+    const apiHost = await getConfigUrl();
     try {
       // const formData = new FormData();
       dispatch(authSlice.actions.setUserLoading());
@@ -15,7 +16,7 @@ const useAuth = () => {
       params.append("Username", username);
       params.append("Password", password);
       params.append("grant_type", "password");
-      const res = await axios.post(`${api_host}oauth/token`, params);
+      const res = await axios.post(`${apiHost}api/oauth/token`, params);
       dispatch(authSlice.actions.setUserSuccess(res.data));
       toast.success("Đăng nhập thành công", {
         position: toast.POSITION.TOP_CENTER,
@@ -33,6 +34,7 @@ const useAuth = () => {
   };
 
   const getAccessTokenFromGoogle = async (code) => {
+    const apiHost = await getConfigUrl();
     const formData = new FormData();
     formData.append("code", code);
     formData.append("client_id", "YOUR_CLIENT_ID");
@@ -42,7 +44,7 @@ const useAuth = () => {
 
     try {
       const response = await axios.post(
-        `${api_host}get-access-token`,
+        `${apiHost}api/get-access-token`,
         formData
       );
       return response.data.access_token;

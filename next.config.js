@@ -5,8 +5,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "api-demowebsite.cdktcnqn.edu.vn",
+        protocol: "https",
+        hostname: "api.fumeli.net/",
         port: "",
         pathname: "//UploadedFiles/**",
       },
