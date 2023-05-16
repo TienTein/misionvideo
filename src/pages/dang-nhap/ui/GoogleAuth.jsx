@@ -10,7 +10,7 @@ const GoogleAuth = () => {
     return (
       <>
         <button
-          onClick={() => signIn()}
+          onClick={() => signIn('google')}
           className="flex items-center font-bold justify-center border-2 border-black rounded-md px-4 py-2 hover:bg-black hover:text-white"
         >
           <Image src={GoogleIcon} alt="" className="h-full w-5 mr-2" />

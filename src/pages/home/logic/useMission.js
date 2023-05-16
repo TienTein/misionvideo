@@ -2,15 +2,16 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import missionSlice from "./missionSlice";
 import { toast } from "react-toastify";
-import { api_host } from "@/utils/api";
+import { getConfigUrl } from '@/utils/getConfig';
 
 const useMisison = () => {
   const dispatch = useDispatch();
 
   const getMissionDatas = async () => {
+    const apiHost = await getConfigUrl();
     try {
       dispatch(missionSlice.actions.setMissionLoading());
-      const res = await axios.get(`${api_host}Campaign/getallclient`);
+      const res = await axios.get(`${apiHost}api/Campaign/getallclient`);
       dispatch(missionSlice.actions.setMissionSuccess(res.data));
     } catch (error) {
       console.log(error);
@@ -25,6 +26,7 @@ const useMisison = () => {
     CampaignId,
     token,
   }) => {
+    const apiHost = await getConfigUrl();
     const data = {
       Active: Active,
       CreateDate: CreateDate,
@@ -35,7 +37,7 @@ const useMisison = () => {
 
     try {
       dispatch(missionSlice.actions.setMissionLoading());
-      const res = await axios.post(`${api_host}UserCampaign/create`, data, {
+      const res = await axios.post(`${apiHost}api/UserCampaign/create`, data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

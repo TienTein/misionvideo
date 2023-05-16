@@ -5,8 +5,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "api-demowebsite.cdktcnqn.edu.vn",
+        protocol: "https",
+        hostname: "api.fumeli.net/",
         port: "",
         pathname: "//UploadedFiles/**",
       },
@@ -15,6 +15,7 @@ const nextConfig = {
   },
   env: {
     apiHost: "https://api-demowebsite.cdktcnqn.edu.vn/api/",
+    NEXTAUTH_URL: "http://localhost:3000",
   },
 };
 
