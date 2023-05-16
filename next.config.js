@@ -14,7 +14,7 @@ const nextConfig = {
     unoptimized: true,
   },
   env: {
-    apiHost: "https://api-demowebsite.cdktcnqn.edu.vn/api/",
+    apiHost: "https://api-demowebsite.cdktcnqn.edu.vn/",
     NEXTAUTH_URL: "http://localhost:3000",
   },
 };
