@@ -5,7 +5,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        reggaeone: "Reggae One, cursive",
+        righteous: "Righteous, cursive",
+      },
+    },
   },
   plugins: [],
 };

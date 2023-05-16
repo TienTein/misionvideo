@@ -34,14 +34,15 @@ export default function MissionItems() {
 
   const handleClick = (item) => {
     const user = localStorage.getItem("user");
-    if (user || session) {
+
+    if ((user && user != "") || session) {
       router.push(`/video/${item.TitleLink}-${item.Id}`);
     } else {
       router.push("/dang-nhap");
     }
   };
 
-  const newMissions = missions.data?.filter(
+  const newMissions = missions?.data?.filter(
     (item) => item.CategoriesCampaignId === 4
   );
 

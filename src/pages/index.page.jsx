@@ -1,15 +1,21 @@
+import Image from "next/image";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { checkLoadingSelector } from "@/redux/selector";
+import { checkLoadingSelector, selectMissions } from "@/redux/selector";
 
 import Loading from "@/components/loading";
 import MissionItems from "./home/ui/missionItems";
 import HomeTitle from "./home/ui/homeTitle";
 import useMisison from "./home/logic/useMission";
+import unMissionBg from "../../public/images/unmissionbg.png";
 
 export default function Home() {
   const { getMissionDatas } = useMisison();
   const isLoading = useSelector(checkLoadingSelector);
+  const missions = useSelector(selectMissions);
+  const newMissions = missions.data?.filter(
+    (item) => item.CategoriesCampaignId === 4
+  );
   useEffect(() => {
     getMissionDatas();
   }, []);
@@ -20,8 +26,21 @@ export default function Home() {
         <Loading />
       ) : (
         <div className="text-white overflow-hidden">
-          <HomeTitle />
-          <MissionItems />
+          {newMissions?.length == 0 ? (
+            <div className="w-full h-[100vh] text-4xl text-white flex justify-center items-center relative z-10 uppercase font-bold px-[10%]">
+              <Image
+                src={unMissionBg}
+                alt="unmisison"
+                className=" absolute w-full h-full -z-10 opacity-50"
+              />
+              Hiện tại nhiệm vụ Video đang không có nhiệm vụ nào!!!
+            </div>
+          ) : (
+            <>
+              <HomeTitle />
+              <MissionItems />
+            </>
+          )}
         </div>
       )}
     </>
