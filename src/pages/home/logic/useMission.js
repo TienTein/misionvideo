@@ -79,7 +79,6 @@ const useMisison = () => {
         }
       );
       if (res != undefined) {
-        console.log(res.data);
         if (res.data.length == 0) {
           dispatch(
             missionSlice.actions.setMissionByUserSuccess("not data yet")
