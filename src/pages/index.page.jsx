@@ -2,13 +2,14 @@ import Image from "next/image";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { checkLoadingSelector, selectMissions } from "@/redux/selector";
-
+import Head from "next/head";
 import Loading from "@/components/loading";
 import MissionItems from "./home/ui/missionItems";
 import HomeTitle from "./home/ui/homeTitle";
 import useMisison from "./home/logic/useMission";
 import unMissionBg from "../../public/images/unmissionbg.png";
 import missionBg from "../../public/images/bgFumeli.png";
+import logo from "../../public/images/logo.png";
 
 export default function Home() {
   const { getMissionDatas } = useMisison();
@@ -23,6 +24,9 @@ export default function Home() {
 
   return (
     <>
+      <Head>
+        <link rel="icon" href="/images/logo.png" />
+      </Head>
       {isLoading ? (
         <Loading />
       ) : (

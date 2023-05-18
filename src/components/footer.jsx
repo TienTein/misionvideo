@@ -14,7 +14,7 @@ const Footer = () => {
   return (
     <div className="w-full relative h-[50vh] bg-black">
       <div className="bg-black w-full h-full top-0 left-0 absolute bg-opacity-80 flex flex-col items-center justify-around pt-[2%] px-[3%]">
-        <Image src={logo} alt="" className="h-20 w-52" />
+        <Image src={logo} alt="" className="h-12 w-52" />
         <div className="footer__icons">
           <FacebookIcon />
           <YouTubeIcon />

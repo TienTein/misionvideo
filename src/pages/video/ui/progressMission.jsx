@@ -20,7 +20,10 @@ const ProgressMission = ({ isPaused, newMission }) => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user != null && user != undefined) {
-        if (missions?.data?.missionByUser.length == 0) {
+        if (
+          missions?.data?.missionByUser.length == 0 &&
+          missions?.data?.missionByUser != "not data yet"
+        ) {
           getMissionByUser({
             userId: user?.userid,
             token: user?.access_token,
@@ -64,10 +67,12 @@ const ProgressMission = ({ isPaused, newMission }) => {
       token: loginUser.access_token,
     });
   };
-
-  const existUser = missions?.data?.missionByUser?.find(
-    (u) => u.CampaignId === newMission?.Id
-  );
+  const existUser =
+    missions?.data?.missionByUser != "not data yet"
+      ? missions?.data?.missionByUser?.find(
+          (u) => u.CampaignId === newMission?.Id
+        )
+      : null;
 
   return (
     <div className="w-full flex justify-center">
