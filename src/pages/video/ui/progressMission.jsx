@@ -20,16 +20,29 @@ const ProgressMission = ({ isPaused, newMission }) => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
       if (user != null && user != undefined) {
-        if (
-          missions?.data?.missionByUser.length == 0 &&
-          missions?.data?.missionByUser != "not data yet"
-        ) {
-          getMissionByUser({
-            userId: user?.userid,
-            token: user?.access_token,
-          });
+        if (user.newData) {
+          if (
+            missions?.data?.missionByUser.length == 0 &&
+            missions?.data?.missionByUser != "not data yet"
+          ) {
+            getMissionByUser({
+              userId: user?.newData?.userid,
+              token: user?.newData?.access_token,
+            });
+          }
+          setLoginUser(user.newData);
+        } else {
+          if (
+            missions?.data?.missionByUser.length == 0 &&
+            missions?.data?.missionByUser != "not data yet"
+          ) {
+            getMissionByUser({
+              userId: user?.userid,
+              token: user?.access_token,
+            });
+          }
+          setLoginUser(user);
         }
-        setLoginUser(user);
       }
     } catch (error) {
       console.log("Error parsing user from local storage:", error);

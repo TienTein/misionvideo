@@ -57,7 +57,7 @@ const AuthInputs = () => {
         <input
           type="text"
           name="username"
-          placeholder="Nhập tên tài khoản ..."
+          placeholder="Nhập email ..."
           onChange={handleChangeInput}
           value={inputs.username}
         />

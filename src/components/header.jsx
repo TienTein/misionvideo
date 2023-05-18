@@ -27,14 +27,13 @@ const Header = () => {
   const theme = useTheme();
   const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
   const [existUser, setExistUser] = useState(null);
-  const { data: session } = useSession();
+  const { data } = useSession();
   const [active, setActive] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const openMenu = Boolean(anchorEl);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [isHeaderFixed, setIsHeaderFixed] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
-
   useEffect(() => {
     try {
       const user = localStorage.getItem("user");
@@ -73,8 +72,8 @@ const Header = () => {
     setActive(false);
   };
 
-  const handleClearUser = () => {
-    signOut();
+  const handleClearUser = async () => {
+    await signOut();
     localStorage.removeItem("user");
     setExistUser(null);
     dispatch(authSlice.actions.clearUserData());
@@ -100,7 +99,7 @@ const Header = () => {
           <>
             {pathname === "/dang-nhap" ? null : (
               <div className="w-fit">
-                {user.data || existUser || session ? (
+                {user.data || existUser || data ? (
                   <div className="flex">
                     <Button
                       variant="contained"
@@ -110,8 +109,8 @@ const Header = () => {
                     >
                       {user.data
                         ? user.data.fullName
-                        : session?.user
-                        ? session.user.name
+                        : data?.user
+                        ? data.user.name
                         : existUser && existUser.fullName
                         ? existUser.fullName
                         : existUser?.name}
