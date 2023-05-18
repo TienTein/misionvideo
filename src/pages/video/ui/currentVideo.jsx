@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 
 const ReactPlayer = dynamic(() => import("react-player/youtube"), {
@@ -8,6 +8,11 @@ const ReactPlayer = dynamic(() => import("react-player/youtube"), {
 
 const CurrentVideo = ({ newMission, setIsPaused }) => {
   const playerRef = useRef(null);
+
+  useEffect(() => {
+    handleReady();
+    handlePlaying();
+  }, []);
 
   const handleReady = () => {
     const player = playerRef.current;
@@ -35,13 +40,7 @@ const CurrentVideo = ({ newMission, setIsPaused }) => {
         onPlay={() => handlePlaying(true)}
         onEnded={() => handlePlaying(false)}
         refs={playerRef}
-        config={{
-          youtube: {
-            playerVars: {
-              origin: "http://localhost:3000",
-            },
-          },
-        }}
+        controls
       />
     </div>
   );

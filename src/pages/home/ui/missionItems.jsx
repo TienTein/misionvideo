@@ -16,19 +16,11 @@ export default function MissionItems() {
   const isMatchLG = useMediaQuery(theme.breakpoints.down("lg"));
   const missions = useSelector(selectMissions);
   const { data: session } = useSession();
-
   useEffect(() => {
     if (session !== null && session !== undefined) {
       toast.success("Đăng nhập thành công", {
         position: toast.POSITION.TOP_CENTER,
       });
-    } else {
-      const user = localStorage.getItem("user");
-      if (user == null) {
-        toast.warning("Không có tài khoản nào đang đăng nhập !!", {
-          position: toast.POSITION.TOP_LEFT,
-        });
-      }
     }
   }, []);
 
@@ -42,7 +34,7 @@ export default function MissionItems() {
     }
   };
 
-  const newMissions = missions?.data?.filter(
+  const newMissions = missions?.data?.allMissions?.filter(
     (item) => item.CategoriesCampaignId === 4
   );
 

@@ -1,27 +1,42 @@
 import React, { useState, useEffect } from "react";
 import useMisison from "../../home/logic/useMission";
 import moment from "moment/moment";
+import { selectMissions } from "@/redux/selector";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const ProgressMission = ({ isPaused, newMission }) => {
+  const pathname = usePathname();
   const [count, setCount] = useState(0);
   const [loginUser, setLoginUser] = useState(null);
-  const { postMissionVideoUser } = useMisison();
+  const missions = useSelector(selectMissions);
+  const { postMissionVideoUser, getMissionByUser } = useMisison();
+
+  useEffect(() => {
+    setCount(0);
+  }, [pathname]);
 
   useEffect(() => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
+      if (missions?.data?.missionByUser.length == 0) {
+        getMissionByUser({
+          userId: user?.userid,
+          token: user?.access_token,
+        });
+      }
       setLoginUser(user);
     } catch (error) {
       console.log("Error parsing user from local storage:", error);
     }
   }, []);
 
-  const progressWidth = `${(count / 15) * 100}%`;
+  const progressWidth = `${(count / 30) * 100}%`;
 
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCount((count) => {
-        if (count < 15 && isPaused === false) {
+        if (count < 30 && isPaused === false) {
           return count + 1;
         } else {
           clearInterval(intervalId);
@@ -37,6 +52,7 @@ const ProgressMission = ({ isPaused, newMission }) => {
     const now = moment()
       .utcOffset("+07:00")
       .format("YYYY-MM-DDTHH:mm:ss.SSSSSSSZ");
+
     postMissionVideoUser({
       Active: true,
       CreateDate: now,
@@ -47,9 +63,11 @@ const ProgressMission = ({ isPaused, newMission }) => {
     });
   };
 
-  const existUser = newMission?.UserCampaigns.find(
-    (u) => u.UserId === loginUser?.userid
+  const existUser = missions?.data?.missionByUser?.find(
+    (u) => u.CampaignId === newMission?.Id
   );
+
+  console.log("=>>> missions", missions);
 
   return (
     <div className="w-full flex justify-center">
@@ -57,7 +75,7 @@ const ProgressMission = ({ isPaused, newMission }) => {
         <h1 className="py-4 text-[#FFBD59] font-bold">{`Tài khoản này đã nhận Fpoint của video này.`}</h1>
       ) : (
         <>
-          {count < 15 ? (
+          {count < 30 ? (
             <div className="w-full h-5 bg-gray-500 rounded-lg">
               <div
                 className="h-full bg-[#FFBD59] max-w-full rounded-lg"

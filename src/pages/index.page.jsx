@@ -13,7 +13,7 @@ export default function Home() {
   const { getMissionDatas } = useMisison();
   const isLoading = useSelector(checkLoadingSelector);
   const missions = useSelector(selectMissions);
-  const newMissions = missions.data?.filter(
+  const newMissions = missions?.data?.allMissions?.filter(
     (item) => item.CategoriesCampaignId === 4
   );
   useEffect(() => {

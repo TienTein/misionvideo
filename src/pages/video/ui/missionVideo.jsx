@@ -28,7 +28,7 @@ const MissionVideo = () => {
   const id = +pathname?.split("-").pop();
   const [newMission, setNewMission] = useState(null);
   useEffect(() => {
-    const mission = missions.data?.find((item) => item.Id === id);
+    const mission = missions.data?.allMissions?.find((item) => item.Id === id);
     setNewMission(mission);
   }, [missions, id]);
 

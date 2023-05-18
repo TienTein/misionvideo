@@ -2,7 +2,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import missionSlice from "./missionSlice";
 import { toast } from "react-toastify";
-import { getConfigUrl } from '@/utils/getConfig';
+import { getConfigUrl } from "@/utils/getConfig";
 
 const useMisison = () => {
   const dispatch = useDispatch();
@@ -42,10 +42,12 @@ const useMisison = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      toast.success("Nhận điểm thành công!!", {
-        position: toast.POSITION.TOP_CENTER,
-      });
-      dispatch(missionSlice.actions.setMissionSuccess(res.data));
+      if (res !== undefined) {
+        toast.success("Nhận điểm thành công!!", {
+          position: toast.POSITION.TOP_CENTER,
+        });
+        getMissionByUser({ userId: UserId, token: token });
+      }
     } catch (error) {
       {
         error.response.data.Message ===
@@ -56,13 +58,33 @@ const useMisison = () => {
                 position: toast.POSITION.TOP_CENTER,
               }
             )
-          : null;
+          : toast.error(error?.response?.data, {
+              position: toast.POSITION.TOP_CENTER,
+            });
       }
       dispatch(missionSlice.actions.setMissionFailure(error.response.data));
     }
   };
 
-  return { getMissionDatas, postMissionVideoUser };
+  const getMissionByUser = async ({ userId, token }) => {
+    const apiHost = await getConfigUrl();
+    try {
+      dispatch(missionSlice.actions.setMissionLoading());
+      const res = await axios.get(
+        `${apiHost}api/UserCampaign/getallclientbyuserid/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      dispatch(missionSlice.actions.setMissionByUserSuccess(res.data));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return { getMissionDatas, postMissionVideoUser, getMissionByUser };
 };
 
 export default useMisison;

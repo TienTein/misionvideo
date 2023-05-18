@@ -34,7 +34,7 @@ const RelatedVideos = () => {
   const missions = useSelector(selectMissions);
   const [slideIndex, setSlideIndex] = useState(0);
 
-  const newMissions = missions.data?.filter(
+  const newMissions = missions?.data?.allMissions?.filter(
     (item) => item.CategoriesCampaignId === 4
   );
 

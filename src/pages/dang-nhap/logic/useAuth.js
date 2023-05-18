@@ -2,7 +2,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import authSlice from "./authSlice";
 import { toast } from "react-toastify";
-import { getConfigUrl } from '@/utils/getConfig';
+import { getConfigUrl } from "@/utils/getConfig";
 
 const useAuth = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,6 @@ const useAuth = () => {
   const signin = async ({ username, password }) => {
     const apiHost = await getConfigUrl();
     try {
-      // const formData = new FormData();
       dispatch(authSlice.actions.setUserLoading());
       const params = new URLSearchParams();
       params.append("Username", username);

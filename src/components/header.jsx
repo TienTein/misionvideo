@@ -15,7 +15,6 @@ import {
 } from "@mui/material";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import DrawlerHeader from "./DrawlerHeader";
-import Loading from "./loading";
 import logo from "../../public/images/logo.png";
 import authSlice from "../../src/pages/dang-nhap/logic/authSlice";
 import { selectUser } from "../redux/selector";

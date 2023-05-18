@@ -4,7 +4,10 @@ export default createSlice({
   name: "mission",
   initialState: {
     loading: false,
-    data: null,
+    data: {
+      allMissions: [],
+      missionByUser: [],
+    },
     error: null,
   },
   reducers: {
@@ -13,7 +16,12 @@ export default createSlice({
     },
     setMissionSuccess: (state, action) => {
       state.loading = false;
-      state.data = action.payload;
+      state.data.allMissions = action.payload;
+      state.error = null;
+    },
+    setMissionByUserSuccess: (state, action) => {
+      state.loading = false;
+      state.data.missionByUser = action.payload;
       state.error = null;
     },
     setMissionFailure: (state, action) => {
@@ -22,7 +30,10 @@ export default createSlice({
     },
     clearMissionData: (state) => {
       state.loading = false;
-      state.data = null;
+      state.data = {
+        allMissions: [],
+        missionByUser: [],
+      };
       state.error = null;
     },
   },
