@@ -83,25 +83,13 @@ const AuthInputs = () => {
           )}
         </div>
         <button
-          className="text-black p-[1px] rounded-md border px-4 py-2 bg-[#FFBD59] border-[#FFBD59] hover:text-white hover:bg-[#E88F08] font-bold"
+          className="text-[#FFBD59] p-[1px] rounded-md border px-4 py-2 bg-black border-[#FFBD59] hover:text-[#E88F08] hover:bg-opacity-90 font-bold hover:translate-y-1"
           onClick={handleAuth}
         >
           Đăng nhập ngay
         </button>
 
-        <Link
-          href="#"
-          className="text-[#FFBD59] p-[1px] rounded-md border px-4 py-2 bg-black boder hover:border-[#E88F08] hover:text-black hover:bg-white font-bold text-center transition duration-500"
-        >
-          Tạo tài khoản mới
-        </Link>
-
         <GoogleAuth />
-        <div className="flex justify-end">
-          <Link href="#" className="hover:underline">
-            Quên mật khẩu?
-          </Link>
-        </div>
       </div>
     </div>
   );

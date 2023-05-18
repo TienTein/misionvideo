@@ -39,7 +39,7 @@ export default function MissionItems() {
   );
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(20);
+  const [itemsPerPage, setItemsPerPage] = useState(18);
 
   const start = (currentPage - 1) * itemsPerPage;
   const end = start + itemsPerPage;
@@ -57,7 +57,9 @@ export default function MissionItems() {
           newDatas.map((item) => (
             <div
               key={item.Id}
-              className={`${isMatchMD ? "border-b border-white pb-5" : ""}`}
+              className={`bg-black p-2 rounded-md ${
+                isMatchMD ? "border-b border-white  pb-5 rounded-b-none" : ""
+              }`}
             >
               <div className={`h-[60%]`}>
                 <Image
@@ -72,7 +74,7 @@ export default function MissionItems() {
 
               <div className={`flex flex-col justify-between h-[40%]`}>
                 <p
-                  className="pt-2 px-2 cursor-pointer"
+                  className="pt-2 px-2 cursor-pointer hover:text-[#FFBD59]"
                   onClick={() => handleClick(item)}
                 >
                   {item.Title}

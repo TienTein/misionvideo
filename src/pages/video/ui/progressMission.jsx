@@ -19,13 +19,15 @@ const ProgressMission = ({ isPaused, newMission }) => {
   useEffect(() => {
     try {
       const user = JSON.parse(localStorage.getItem("user"));
-      if (missions?.data?.missionByUser.length == 0) {
-        getMissionByUser({
-          userId: user?.userid,
-          token: user?.access_token,
-        });
+      if (user != null && user != undefined) {
+        if (missions?.data?.missionByUser.length == 0) {
+          getMissionByUser({
+            userId: user?.userid,
+            token: user?.access_token,
+          });
+        }
+        setLoginUser(user);
       }
-      setLoginUser(user);
     } catch (error) {
       console.log("Error parsing user from local storage:", error);
     }
@@ -66,8 +68,6 @@ const ProgressMission = ({ isPaused, newMission }) => {
   const existUser = missions?.data?.missionByUser?.find(
     (u) => u.CampaignId === newMission?.Id
   );
-
-  console.log("=>>> missions", missions);
 
   return (
     <div className="w-full flex justify-center">

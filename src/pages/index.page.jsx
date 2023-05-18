@@ -8,6 +8,7 @@ import MissionItems from "./home/ui/missionItems";
 import HomeTitle from "./home/ui/homeTitle";
 import useMisison from "./home/logic/useMission";
 import unMissionBg from "../../public/images/unmissionbg.png";
+import missionBg from "../../public/images/bgFumeli.png";
 
 export default function Home() {
   const { getMissionDatas } = useMisison();
@@ -25,7 +26,7 @@ export default function Home() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="text-white overflow-hidden">
+        <div className="text-white overflow-hidden relative z-10">
           {newMissions?.length == 0 ? (
             <div className="w-full h-[100vh] text-4xl text-white flex justify-center items-center relative z-10 uppercase font-bold px-[10%]">
               <Image
@@ -37,6 +38,11 @@ export default function Home() {
             </div>
           ) : (
             <>
+              <Image
+                src={missionBg}
+                alt="unmisison"
+                className="absolute w-full h-full -z-10 opacity-50"
+              />
               <HomeTitle />
               <MissionItems />
             </>

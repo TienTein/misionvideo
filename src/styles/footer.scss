@@ -1,11 +1,18 @@
 .footer__icons {
     display: flex;
     svg {
-        background-color: #febd2e;
-        padding: 0.5rem;
-        border-radius: 100%;
-        width: 40px !important;
-        height: 40px !important;
-        margin: 0 0.5rem;
+        color: #fff;
+        width: 30px !important;
+        height: 30px !important;
+        margin: 0 1.5rem;
+    }
+}
+
+.footer__contact {
+    width: 60%;
+    margin: 0 auto;
+    &--container {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
