@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import Slider from "react-slick";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { selectMissions } from "../../../redux/selector";
-import NextArrow from "../../../../public/images/NextArrrow.png";
-import PrevArrow from "../../../../public/images/PreviosArrow.png";
+import { selectMissions } from "../../../../redux/selector";
+import NextArrow from "../../../../../public/images/NextArrrow.png";
+import PrevArrow from "../../../../../public/images/PreviosArrow.png";
 
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -29,17 +29,19 @@ function SamplePrevArrow({ onClick }) {
 
 const RelatedVideos = () => {
   const router = useRouter();
+  const pathname = usePathname();
   const theme = useTheme();
   const isMatchMD = useMediaQuery(theme.breakpoints.down("md"));
   const missions = useSelector(selectMissions);
   const [slideIndex, setSlideIndex] = useState(0);
 
+  const id = +pathname?.split("-").pop();
   const newMissions = missions?.data?.allMissions?.filter(
-    (item) => item.CategoriesCampaignId === 4
+    (item) => item.CategoriesCampaignId === 4 && item.Id != id
   );
-
+  console.log("=>> newMissions", newMissions);
   const handleClick = (item) => {
-    router.push(`/video/${item.TitleLink}-${item.Id}`);
+    router.push(`/tham-gia/video/${item.TitleLink}-${item.Id}`);
   };
 
   const settings = {

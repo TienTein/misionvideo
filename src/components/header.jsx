@@ -72,8 +72,8 @@ const Header = () => {
     setActive(false);
   };
 
-  const handleClearUser = async () => {
-    await signOut();
+  const handleClearUser = () => {
+    signOut();
     localStorage.removeItem("user");
     setExistUser(null);
     dispatch(authSlice.actions.clearUserData());

@@ -28,7 +28,7 @@ export default function MissionItems() {
     const user = localStorage.getItem("user");
 
     if ((user && user != "") || session) {
-      router.push(`/video/${item.TitleLink}-${item.Id}`);
+      router.push(`/tham-gia/video/${item.TitleLink}-${item.Id}`);
     } else {
       router.push("/dang-nhap");
     }

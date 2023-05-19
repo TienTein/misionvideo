@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import useMisison from "../../home/logic/useMission";
+import useMisison from "../../../home/logic/useMission";
 import moment from "moment/moment";
 import { selectMissions } from "@/redux/selector";
 import { usePathname } from "next/navigation";
@@ -90,7 +90,7 @@ const ProgressMission = ({ isPaused, newMission }) => {
   return (
     <div className="w-full flex justify-center">
       {existUser ? (
-        <h1 className="py-4 text-[#FFBD59] font-bold">{`Tài khoản này đã nhận Fpoint của video này.`}</h1>
+        <h1 className="py-4 text-[#FFBD59] font-bold">{`Đã nhận Fpoint.`}</h1>
       ) : (
         <>
           {count < 30 ? (
@@ -103,7 +103,7 @@ const ProgressMission = ({ isPaused, newMission }) => {
               ></div>
             </div>
           ) : (
-            <button className="bg-[#FFBD59] mb-4 text-green-200 my-2 font-bold rounded-md border-2 border-[#FFBD59] hover:scale-105 hover:[&>*]:border-[#FFBD59] transition duration-500">
+            <button className="bg-[#FFBD59] mb-4 text-red-600 my-2 font-bold rounded-md border-2 border-[#FFBD59] hover:scale-105 hover:[&>*]:border-[#FFBD59] transition duration-500">
               <div
                 className="w-full h-full py-2 px-4 border-2 border-black rounded-md"
                 onClick={handleClick}

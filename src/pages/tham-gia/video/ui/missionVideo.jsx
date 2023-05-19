@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useMediaQuery, useTheme } from "@mui/material";
 import { useSelector } from "react-redux";
-import { selectMissions } from "../../../redux/selector";
+import { selectMissions } from "../../../../redux/selector";
 import { usePathname, useRouter } from "next/navigation";
 import CurrentVideo from "./currentVideo";
 import ProgressMission from "./progressMission";

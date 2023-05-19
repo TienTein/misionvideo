@@ -5,7 +5,7 @@ import Loading from "@/components/loading";
 
 import MissionVideo from "../ui/missionVideo";
 import RelatedVideos from "../ui/relatedVideos";
-import useMisison from "../../home/logic/useMission";
+import useMisison from "../../../home/logic/useMission";
 
 export default function Video() {
   const { getMissionDatas } = useMisison();
