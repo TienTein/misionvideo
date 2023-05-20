@@ -13,6 +13,14 @@ const nextConfig = {
     ],
     unoptimized: true,
   },
+  async rewrites() {
+    return [
+      {
+        source: "/tham-gia/video/:slug",
+        destination: "/tham-gia/video/:slug",
+      },
+    ];
+  },
   env: {
     GOOGLE_CLIENT_ID:
       "222976448496-cb46irpvt50119r1fkh20pff16a3oen3.apps.googleusercontent.com",
