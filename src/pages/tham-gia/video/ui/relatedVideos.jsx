@@ -39,7 +39,6 @@ const RelatedVideos = () => {
   const newMissions = missions?.data?.allMissions?.filter(
     (item) => item.CategoriesCampaignId === 4 && item.Id != id
   );
-  console.log("=>> newMissions", newMissions);
   const handleClick = (item) => {
     router.push(`/tham-gia/video/${item.TitleLink}-${item.Id}`);
   };
